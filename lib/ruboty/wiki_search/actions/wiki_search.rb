@@ -12,9 +12,10 @@ module Ruboty
         end
 
         def search
-          search_string = message.match_data[:search_string].strip
+          search_params = search_params(message.match_data[:search_string].strip)
+          message.reply('set search text!') and return unless search_params[:text]
 
-          attachments = Ruboty::WikiSearch::GitOperation.search(search_string).each_with_object([]) do |(repo, detail), arr|
+          attachments = Ruboty::WikiSearch::GitOperation.search(search_params).each_with_object([]) do |(repo, detail), arr|
             arr << {
               color: "##{Digest::MD5.hexdigest(repo)[0..5]}",
               author_name: repo,
@@ -25,12 +26,25 @@ module Ruboty
           end
 
           message.reply(
-            "#{attachments.empty? ? 'No ' : ''}wiki search results: #{search_string}",
+            "#{attachments.empty? ? 'No ' : ''}wiki search results: #{search_params[:text]}",
             parse: 'none',
             attachments: attachments,
           )
         rescue => e
           message.reply("wiki search error! #{e}")
+        end
+
+        private
+
+        def search_params(string)
+          strings = string.gsub(/　/, ' ').split(' ')
+          repo = strings.select {|b| b.start_with?('repo:') }.first&.gsub(/^repo:/, '')
+          strings.delete("repo:#{repo}")
+
+          {
+            repo: repo,
+            text: strings.first,
+          }
         end
       end
     end
