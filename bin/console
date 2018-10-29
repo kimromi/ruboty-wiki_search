@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'ruboty/wiki_search'
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+require 'dotenv'
+Dotenv.load
+
+require 'ruboty'
+Ruboty::CommandBuilder.new(ARGV).build.call
