@@ -25,7 +25,7 @@ able to specify multiple repositories, separated by commas.
 
 ```
 # search
-search wiki <string>
+wiki search <string>
 ```
 
 ## License
