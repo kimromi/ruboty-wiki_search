@@ -12,7 +12,7 @@ module Ruboty
       on(
         /search (?<search_string>.+)/,
         name: 'search',
-        description: 'search wiki'
+        description: 'search wiki | options repo:<repository>'
       )
 
       def sync(message)

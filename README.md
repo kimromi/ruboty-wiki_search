@@ -29,7 +29,8 @@ GitHub wiki repository cloned directory. ex:`/tmp`
 
 ```
 # search
-ruboty search <string>
+ruboty search <search_string>
+ruboty search repo:<repository> <search_string>
 
 # git clone or pull master branch repository
 ruboty sync
