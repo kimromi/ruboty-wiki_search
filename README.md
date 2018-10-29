@@ -21,6 +21,10 @@ In case of private repository or GitHub Enterprise:
 
 able to specify multiple repositories, separated by commas.
 
+### `RUBOTY_WIKI_SEARCH_DIRECTORY`
+
+GitHub wiki repository cloned directory. ex:`/tmp`
+
 ## Usage
 
 ```

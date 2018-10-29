@@ -38,7 +38,7 @@ module Ruboty
         end
 
         def repos_directory
-          File.realpath("#{__dir__}/../../../repos")
+          ENV['RUBOTY_WIKI_SEARCH_DIRECTORY'] || File.realpath("#{__dir__}/../../../repos")
         end
 
         def sync_directory(uri)
