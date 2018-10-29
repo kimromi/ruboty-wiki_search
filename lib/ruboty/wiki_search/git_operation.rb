@@ -5,17 +5,19 @@ module Ruboty
   module WikiSearch
     module GitOperation
       class << self
-        def search(string)
+        def search(text:, repo:nil)
           Dir.glob("#{repos_directory}/**/*.md").each_with_object({}) do |file_path, hash|
-            name = file_path.split('/').last
-            repo = file_path.split('/')[-3..-2].join('/')
-            repo_url = "https://#{file_path.split('/')[-4..-2].join('/')}/wiki"
+            file_name = file_path.split('/').last
+            file_repo = file_path.split('/')[-3..-2].join('/')
+            file_repo_url = "https://#{file_path.split('/')[-4..-2].join('/')}/wiki"
 
-            if name =~ /#{string}/ || !File.readlines(file_path).grep(/#{string}/).empty?
-              hash[repo] ||= {}
-              hash[repo][:url] ||= repo_url
-              hash[repo][:files] ||= []
-              hash[repo][:files] << name.gsub(/\.md$/, '')
+            next if repo && file_repo !~ /#{repo}/
+
+            if name =~ /#{text}/ || !File.readlines(file_path).grep(/#{text}/).empty?
+              hash[file_repo] ||= {}
+              hash[file_repo][:url] ||= file_repo_url
+              hash[file_repo][:files] ||= []
+              hash[file_repo][:files] << file_name.gsub(/\.md$/, '')
             end
           end
         end
