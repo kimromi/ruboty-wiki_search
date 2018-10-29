@@ -30,6 +30,7 @@ module Ruboty
             parse: 'none',
             attachments: attachments,
           )
+          puts attachments if ENV['DEBUG']
         rescue => e
           message.reply("wiki search error! #{e}")
         end
