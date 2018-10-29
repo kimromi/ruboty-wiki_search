@@ -4,13 +4,13 @@ module Ruboty
   module Handlers
     class WikiSearch < Base
       on(
-        /wiki sync/,
+        /sync/,
         name: 'sync',
         description: 'git clone or git pull wiki repository'
       )
 
       on(
-        /wiki search (?<search_string>.+)/,
+        /search (?<search_string>.+)/,
         name: 'search',
         description: 'search wiki'
       )

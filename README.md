@@ -25,7 +25,10 @@ able to specify multiple repositories, separated by commas.
 
 ```
 # search
-wiki search <string>
+ruboty search <string>
+
+# git clone or pull master branch repository
+ruboty sync
 ```
 
 ## License
