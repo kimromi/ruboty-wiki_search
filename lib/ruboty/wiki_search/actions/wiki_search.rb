@@ -19,14 +19,15 @@ module Ruboty
               color: "##{Digest::MD5.hexdigest(repo)[0..5]}",
               author_name: repo,
               author_link: detail[:url],
-              text: detail[:files].map {|f| "<#{detail[:url]}/#{f}}|#{f}>" }.join("\n"),
+              text: detail[:files].map {|f| "<#{detail[:url]}/#{f}|#{f}>" }.join("\n"),
               mrkdwn_in: %w(text),
             }
           end
 
           message.reply(
             "#{attachments.empty? ? 'No ' : ''}wiki search results: #{search_string}",
-            attachments: attachments
+            parse: 'none',
+            attachments: attachments,
           )
         rescue => e
           message.reply("wiki search error! #{e}")
