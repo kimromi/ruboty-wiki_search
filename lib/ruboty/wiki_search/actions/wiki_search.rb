@@ -19,7 +19,7 @@ module Ruboty
               color: "##{Digest::MD5.hexdigest(repo)[0..5]}",
               author_name: repo,
               author_link: detail[:url],
-              text: detail[:files].map {|f| "<#{detail[:url]}/#{f}|#{f}>" }.join("\n"),
+              text: detail[:files].map {|f| "<#{detail[:url]}/#{f}/_edit|:pencil:> <#{detail[:url]}/#{f}|#{f}>" }.join("\n"),
               mrkdwn_in: %w(text),
             }
           end
