@@ -13,11 +13,12 @@ module Ruboty
 
             next if repo && file_repo !~ /#{repo}/
 
-            if name =~ /#{text}/ || !File.readlines(file_path).grep(/#{text}/).empty?
+            if file_name =~ /#{text}/ || !File.readlines(file_path).grep(/#{text}/).empty?
               hash[file_repo] ||= {}
               hash[file_repo][:url] ||= file_repo_url
               hash[file_repo][:files] ||= []
               hash[file_repo][:files] << file_name.gsub(/\.md$/, '')
+              hash[file_repo][:files].sort!
             end
           end
         end
