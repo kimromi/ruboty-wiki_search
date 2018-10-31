@@ -18,6 +18,7 @@ module Ruboty
               hash[file_repo][:url] ||= file_repo_url
               hash[file_repo][:files] ||= []
               hash[file_repo][:files] << file_name.gsub(/\.md$/, '')
+              hash[file_repo][:files].sort!
             end
           end
         end
