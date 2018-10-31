@@ -8,6 +8,8 @@ module Ruboty
         def search(text:, repo:nil)
           Dir.glob("#{repos_directory}/**/*.md").each_with_object({}) do |file_path, hash|
             file_name = file_path.split('/').last
+            next if %w(Home.md _Sidebar.md).include?(file_name)
+
             file_repo = file_path.split('/')[-3..-2].join('/')
             file_repo_url = "https://#{file_path.split('/')[-4..-2].join('/')}/wiki"
 

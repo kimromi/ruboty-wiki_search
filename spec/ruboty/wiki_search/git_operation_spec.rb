@@ -39,5 +39,17 @@ describe Ruboty::WikiSearch::GitOperation do
         }
       }) }
     end
+
+    context 'ignore Home.md' do
+      let(:text) { 'Home' }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'ignore _Sidebar.md' do
+      let(:text) { '_Sidebar' }
+
+      it { is_expected.to be_empty }
+    end
   end
 end
